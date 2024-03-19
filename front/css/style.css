@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Rum+Raisin&family=Source+Sans+3:wght@400;900&display=swap');
+html {
+    --scroll-behavior: smooth;
+    scroll-behavior: smooth;
+}
+.row {
+    max-width: 1440px;
+    margin:auto;
+    width: 100%;
+}
+header {
+    background-color: black;
+    height:125px;
+    display: flex;
+    align-items: center;
+}
+.hero {
+    background: #000;
+    margin:0;
+    min-height: calc(100vh - 125px);
+    display: flex;
+    background-image: url("../img/images-art.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.hero h1 {
+    margin: 0;
+    padding:0;
+    color: #FFF;
+    text-align: center;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 96px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+}
+
+.hero a {
+    background: #EE7F43;
+    display: inline-block;
+    color:#FFF;
+    text-align: center;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    text-decoration: none;
+    padding:12px 57px;
+    margin-top: 50px;
+}
+
+.hero .row {
+    text-align: center;
+}
+
+.productlist {
+    max-width: 1440px;
+    margin:auto;
+    text-align: center;
+}
+.productlist > div {
+    position:relative;
+}
+.productlist > div > img {
+    margin:78px 0;
+}
+.productlist > div > a {
+    position: absolute;
+    top: 50%;
+    right: 0;
+}
+
+.productlist .products {
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:30px;
+    row-gap: 57px;
+}
+
+.products img {
+    width:100%;
+}
+
+.products article {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.products article a {
+    background: #EE7F43;
+    display: inline-block;
+    color:#FFF;
+    text-align: center;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    text-decoration: none;
+    padding:12px 57px;
+    position:absolute;
+    z-index: 9;
+    bottom: -30px;
+}
+
+footer {
+    margin-top: 100px;
+    background:#000;
+    text-align: center;
+    color:#FFF;
+    padding:20px 0;
+}
+footer p {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+footer a {
+    color:#fff;
+    text-decoration: none;
+}
+
+.page header {
+    background-color: #fff;
+    margin: auto;
+    max-width: 1440px;
+    height:auto;
+    margin:41px auto 80px auto;
+   
+}
+.page header div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page header div {
+    position:relative;
+    width: 100%;
+}
+.page header a:nth-child(2) {
+    position:absolute;
+    top:50%;
+    right:0;
+}
+
+.detailoeuvre {
+    max-width: 1440px;
+    margin:auto;
+}
+
+.detailoeuvre article {
+    display:grid; 
+    grid-template-columns: repeat(2, 1fr);
+    gap:85px;
+}
+
+figure {
+    margin: 0;
+    padding: 0;
+}
+.detailoeuvre img {
+    width:100%;
+    height:100%;
+    object-fit: cover;
+}
+.detailoeuvre article > div {
+    background-color: #F3F3F3;
+    width: 100%;
+    text-align: center;
+}
+
+.detailoeuvre h1,
+.detailoeuvre h2 {
+    color: #000;
+    text-align: center;
+    font-family: 'Rum Raisin', sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.detailoeuvre article p {
+    color: #000;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 187.2%; /* 29.952px */
+    max-width: 80%;
+    margin: auto;
+}
+p {
+    white-space: break-spaces;
+}
+div.price  {
+    margin-bottom: 80px;
+}
+article > div > div.price > p {
+    margin: auto;
+    margin-top: 80px;
+    text-align: center;
+    color: #EE7F43;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.detailoeuvre .price .showprice {
+    display:block;
+    text-align: center;
+    font-family: 'Source Sans 3', sans-serif;
+    color: #000;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.declinaison input {
+    border: 1px solid #EE7F43;
+    font-family: 'Source Sans 3', sans-serif;
+    height:66px;
+    /* width:83px; */
+    background-color: transparent;
+    text-align: center;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 0;
+}
+.declinaison select {
+    border: 1px solid #EE7F43;
+    font-family: 'Source Sans 3', sans-serif;
+    height:66px;
+    background-color: transparent;
+    padding-left:12px;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+}
+.declinaison {
+    display:grid;
+    grid-template-columns: 25% auto;
+    width:80%;
+    gap: 24px;
+    margin:auto;
+}
+.button-buy {
+    color: #FFF;
+    text-align: center;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    background: #EE7F43;
+    text-decoration: none;
+    padding:12px 57px;
+    margin: auto;
+    display: inline-block;
+    margin-top: 24px;
+}
+.detailoeuvre h2 {
+    margin-top: 50px;
+}
+
+.detailoeuvre aside {
+    color: #000;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
