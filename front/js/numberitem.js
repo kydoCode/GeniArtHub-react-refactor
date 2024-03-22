@@ -13,7 +13,7 @@ function numberItem(){
     if(cart.length > 0){
         // Si c'est supérieur à 0, cela signifie qu'on a des éléments dans le panier
         //                         (accumulateur, valeurActuelle) => accumulateur + valeurActuelle, valeurInitiale
-        const quantity = cart.reduce((acc, el) => acc + el.quantite, 0)
+        const quantity = cart.reduce((acc, el) => acc + parseInt(el.quantite), 0)
         document.querySelector("#carticon span").textContent = quantity
         document.querySelector("#carticon span").style.display = "flex"
         return

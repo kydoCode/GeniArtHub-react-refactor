@@ -5,6 +5,7 @@ async function init() {
     populateData()
     updateTotal()
     listenDelete()
+    listenQuantity()
 }
 init()
 
@@ -88,3 +89,42 @@ function listenDelete(){
 }
 
 // Fonction qui écoute le changement de quantité
+function listenQuantity(){
+    // Séléctionner tous les input des articles
+    const inputs = document.querySelectorAll('.article input')
+    inputs.forEach(el => {
+        el.addEventListener("change", () => {
+            const id = el.dataset.id
+            const format = el.dataset.format
+            const quantity = el.value
+
+            // Récupérer l'index du produit dans le panier
+            const index = cart.findIndex(el => el.id === id && el.taille === format)
+
+            // On vérifie si ancienne quantité + nouvelle quantité ne dépasse pas 100
+            if(cart[index].quantite + parseInt(quantity) > 100){
+                showInfos("La quantité doit être de 100 maximum")
+                // On remet l'ancienne quantité
+                el.value = cart[index].quantite
+                return
+            }
+
+            // On vérifie si la quantité est supérieur à 0
+            if(parseInt(quantity) < 1){
+                showInfos("La quantité doit être d'au moins 1")
+                // On remet l'ancienne quantité
+                el.value = cart[index].quantite
+                return
+            }
+
+            // On modifie la quantité du produit dans le panier
+            cart[index].quantite = quantity
+
+            // On met à jour le localStorage
+            localStorage.setItem("cart", JSON.stringify(cart))
+
+            // On met à jour le total
+            updateTotal()
+        })
+    })
+}
