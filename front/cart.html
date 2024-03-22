@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Panier - GeniArtHub</title>
+</head>
+<body class="page">
+    <header>
+        <div>
+            <a href="index.html">
+                <img src="img/logo-black.png" alt="Logo GeniArtHub version sombre">
+            </a>
+            <a id="carticon" href="cart.html"><img src="img/cart.svg" alt="Aller au panier"></a>
+        </div>
+    </header>
+
+    <main class="cart">
+        <section>
+            <h2>Votre Panier</h2>
+            <div id="panier">
+
+            </div>
+
+            <div class="total">
+                <h3>Total de la commande</h3>
+                <p id="total"><span id="totalarticle">0</span> articles pour un montant de <span id="montanttotal">0</span>€</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Formulaire de commande</h2>
+            <form id="command">
+                <div>
+                    <div>
+                        <label for="prenom">Prénom: </label>
+                        <input type="text" name="prenom">
+                    </div>
+                    <div>
+                        <label for="nom">Nom: </label>
+                        <input type="text" name="nom">
+                    </div>
+                    <div>
+                        <label for="adresse">Adresse: </label>
+                        <input type="text" name="adresse">
+                    </div>
+                    <div>
+                        <label for="ville">Ville: </label>
+                        <input type="text" name="ville">
+                    </div>
+                    <div>
+                        <label for="mail">Email: </label>
+                        <input type="text" name="mail">
+                    </div>
+                </div>
+
+                <button class="button-buy" href="#">Passer commande</button>
+            </form>
+            
+            
+        </section>
+    </main>
+    <footer>
+        <p>Errante Creation © 2023 - GeniArtHub</p>
+    </footer>
+    <script src="js/numberitem.js"></script>
+    <script src="js/modale.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>
