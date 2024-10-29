@@ -233,6 +233,17 @@ exports.findById = (id) => {
   );
 }
 
-
-
-
+exports.updateQuantities = (orderedProducts) => {
+  return new Promise((resolve, reject) => {
+    orderedProducts.forEach((orderedProduct) => {
+      const product = products.find((p) => p._id === orderedProduct.id);
+      if (product) {
+        const declinaison = product.declinaisons.find((d) => d.taille === orderedProduct.taille);
+        if (declinaison) {
+          declinaison.quantite -= orderedProduct.quantite;
+        }
+      }
+    });
+    resolve();
+  });
+};

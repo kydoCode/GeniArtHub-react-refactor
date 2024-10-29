@@ -27,78 +27,6 @@ exports.getOneProduct = async (req, res, next) => {
   }
 };
 
-
-// exports.orderProducts = async (req, res, next) => {
-//   if (
-//     !req.body.contact ||
-//     !req.body.contact.firstName ||
-//     !req.body.contact.lastName ||
-//     !req.body.contact.address ||
-//     !req.body.contact.city ||
-//     !req.body.contact.email ||
-//     !req.body.products
-//   ) {
-//     return res.status(400).json({ error: 'Bad request!' });
-//   }
-
-//   const orderedProducts = req.body.products; // Tableau d'objets { productId: 'abc12345', quantity: 2 }
-
-//   // Créer une liste des promesses pour rechercher les produits dans la base de données
-//   const productQueries = orderedProducts.map(async (orderItem) => {
-//     try {
-//       const product = await Product.findById(orderItem.productId);
-//       if (!product) {
-//         throw new Error(`Product not found: ${orderItem.productId}`);
-//       }
-//       // Ajouter la quantité et l'URL de l'image
-//       product.quantity = orderItem.quantity;
-//       product.image = `${req.protocol}://${req.get('host')}/images/${product.image}`;
-      
-//       // Récupérer le prix depuis la base de données
-//       const price = product.price; // Assurez-vous que le champ "price" est correctement défini dans votre modèle Product
-      
-//       return {
-//         ...product,
-//         price, // Ajouter le prix à l'objet
-//       };
-//     } catch (error) {
-//       throw new Error('Database error!');
-//     }
-//   });
-  
-//   try {
-//     const orderedProductsData = await Promise.all(productQueries);
-  
-//     // Calculer le montant total de la commande
-//     const totalAmount = orderedProductsData.reduce((total, product) => {
-//       return total + product.price * product.quantity;
-//     }, 0);
-  
-//     const orderId = uuid();
-//     res.status(201).json({
-//       contact: req.body.contact,
-//       products: orderedProductsData,
-//       totalAmount, // Ajout du montant total
-//       orderId,
-//     });
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// };
-
-/**
- *
- * Expects request to contain:
- * contact: {
- *   firstName: string,
- *   lastName: string,
- *   address: string,
- *   city: string,
- *   email: string
- * }
- * products: [string] <-- array of product _id
- *
- */
 exports.orderProducts = async (req, res, next) => {
   if (
     !req.body.contact ||
@@ -112,11 +40,22 @@ exports.orderProducts = async (req, res, next) => {
     return res.status(400).json({ error: 'Bad request!' });
   }
 
-  /* The code is creating an array of promises called `queries`. Each promise represents a database
-  query to find a product by its ID. */
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (
+    req.body.contact.firstName.length < 2 ||
+    /[^a-zA-Z]/.test(req.body.contact.firstName) ||
+    req.body.contact.lastName.length < 2 ||
+    /[^a-zA-Z]/.test(req.body.contact.lastName) ||
+    req.body.contact.address.length < 10 ||
+    req.body.contact.city.length < 3 ||
+    /[^a-zA-Z]/.test(req.body.contact.city) ||
+    !emailRegex.test(req.body.contact.email)
+  ) {
+    return res.status(400).json({ error: 'Invalid contact information!' });
+  }
+
   const queries = req.body.products.map(async (productId) => {
     try {
-     /* The code is trying to find a product in the database based on the provided `productId`. */
       const product = await Product.findById(productId);
       if (!product) {
         throw new Error(`Product not found: ${productId}`);
@@ -130,10 +69,14 @@ exports.orderProducts = async (req, res, next) => {
 
   try {
     const products = await Promise.all(queries);
+    const totalAmount = products.reduce((total, product) => {
+      return total + product.declinaisons[0].prix; // Assuming the first declinaison is the selected one
+    }, 0);
     const orderId = uuid();
     res.status(201).json({
       contact: req.body.contact,
       products,
+      totalAmount,
       orderId,
     });
   } catch (error) {
