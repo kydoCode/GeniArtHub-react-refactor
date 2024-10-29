@@ -17,9 +17,9 @@ const ProductList = () => {
   return (
     <div className="productlist">
       <div>
-        <img src="img/logo-black.png" alt="Logo GeniArtHub version sombre" />
+        <img src="/src/assets/img/logo-black.png" alt="Logo GeniArtHub version sombre" />
         <Link id="carticon" to="/cart">
-          <img src="img/cart.svg" alt="Aller au panier" />
+          <img src="/src/assets/img/cart.svg" alt="Aller au panier" />
         </Link>
       </div>
       <section className="products">
