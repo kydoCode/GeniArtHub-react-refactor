@@ -68,4 +68,22 @@ async function sendForm(contact, products){
     showInfos(`Votre commande a bien été enregistrée, voici votre numéro de commande : ${res.orderId}`, "Commande enregistrée")
 
     // Si on obtient le numéro de commande, on vide le panier et le formulaire
+    displayOrderConfirmation(res.orderId);
+    clearCartAndForm();
+}
+
+function displayOrderConfirmation(orderId) {
+    const orderConfirmationSection = document.getElementById("order-confirmation");
+    const formSection = document.querySelector("form");
+
+    orderConfirmationSection.classList.remove("hidden");
+    formSection.classList.add("hidden");
+
+    const orderIdParagraph = document.getElementById("order-id");
+    orderIdParagraph.textContent = `Votre numéro de commande est : ${orderId}`;
+}
+
+function clearCartAndForm() {
+    localStorage.removeItem("cart");
+    form.reset();
 }
