@@ -7,3 +7,5 @@ createRoot(document.getElementById('root')).render(
     <App />
   </StrictMode>,
 )
+
+// Update the import statement for `App` to use the new `App.jsx` file done ?
